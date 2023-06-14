@@ -181,12 +181,14 @@ popButton.addEventListener("click", function() {
   }
 });
 
-popSound.addEventListener("ended", function() {
+popCatSound.addEventListener("ended", function() {
   // Reset the state
-  popSound.pause();
-  popSound.currentTime = 0;
+  popCatSound.pause();
+  popCatSound.currentTime = 0;
   isPopPlaying = false;
 });
+
+// ...existing code...
 
 // ...existing code...
 
@@ -211,12 +213,12 @@ oiiaButton.addEventListener("click", function() {
     isOiiaSpinning = false;
   } else {
     oiiaCatImage.src = "./Source/OiiaCat/OiiaCatSpin.gif";
-    if (!isCryingSoundPlaying) {
+    if (!isOiiaSoundPlaying) {
       oiiaCatSound.currentTime = oiiaSoundPosition;
       oiiaCatSound.play();
       isOiiaSoundPlaying = true;
     }
-    cryButton.textContent = "Stop";
+    oiiaButton.textContent = "Stop";
     isOiiaSpinning = true;
   }
 });
@@ -234,3 +236,5 @@ oiiaCatSound.addEventListener("ended", function() {
   oiiaCatSound.currentTime = 0;
   oiiaCatSound.play();
 });
+
+// ...existing code...

@@ -50,15 +50,21 @@
   <script>
     // Preload GIFs, images, and sounds
     function preload() {
-      var images = [
+      var assets = [
         "./Source/HappyCat/HappyCatStop.gif",
         "./Source/TheRockCat/TheRockCatPic.png",
         "./Source/CryingCat/CryingCatRun.gif",
         "./Source/TomChingCheng/TomChingChengPic.png",
         "./Source/OiiaCat/OiiaCat.png",
-        "./Source/PopCat/PopCatPic.gif"
+        "./Source/PopCat/PopCatPic.gif",
+        "./Source/HappyCat/HappyCat.gif",
+        "./Source/TheRockCat/TheRockCat.gif",
+        "./Source/CryingCat/CryingCat.gif",
+        "./Source/TomChingCheng/TomChingCheng.gif",
+        "./Source/OiiaCat/OiiaCatSpin.gif",
+        "./Source/PopCat/PopCat.gif"
       ];
-      
+
       var sounds = [
         "./Source/HappyCat/HappyHappyHappy.mp3",
         "./Source/CryingCat/Crying.mp3",
@@ -68,35 +74,22 @@
         "./Source/PopCat/PopCatSound.mp3"
       ];
 
-      var gif = [
-        "./Source/HappyCat/HappyCat.gif",
-        "./Source/TheRockCat/TheRockCat.gif",
-        "./Source/CryingCat/CryingCat.gif",
-        "./Source/TomChingCheng/TomChingCheng.gif",
-        "./Source/OiiaCat/OiiaCatSpin.gif",
-        "./Source/PopCat/PopCat.gif"
-      ];
-      
-      var preloadImages = images.map(function(src) {
-        var img = new Image();
-        img.src = src;
-        return img;
-      });
- 
-      var preloadGifs = images.map(function(src) {
-        var gif = new Image();
-        gif.src = src;
-        return gif;
-      });
-
-      var preloadSounds = sounds.map(function(src) {
-        var audio = new Audio();
-        audio.src = src;
-        return audio;
+      var preloadAssets = assets.map(function(src) {
+        if (src.endsWith(".gif") || src.endsWith(".png")) {
+          var img = new Image();
+          img.src = src;
+          return img;
+        } else {
+          var audio = new Audio();
+          audio.src = src;
+          return audio;
+        }
       });
     }
 
-    preload();
+    document.addEventListener("DOMContentLoaded", function() {
+      preload();
+    });
   </script>
 </body>
 </html>
