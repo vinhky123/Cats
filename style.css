@@ -50,6 +50,8 @@ body {
 }
 
 /* Adjustments for phones */
+
+/* Adjustments for phones */
 @media only screen and (max-width: 600px) {
   .row {
     flex-wrap: wrap;
@@ -58,5 +60,12 @@ body {
   .cat-container {
     flex-basis: 50%;
   }
+
+  .cat-image {
+    width: 260px;
+    height: 200px;
+    object-fit: contain;
+  }
 }
+
 
