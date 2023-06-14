@@ -26,6 +26,10 @@
         <img id="tomChingChengCatImage" src="./Source/TomChingCheng/TomChingChengPic.png" alt="Static Cat" class="cat-image" />
         <button id="spinButton" class="cat-button">Spin</button>
       </div>
+      <div class="cat-container">
+        <img id="oiiaCatImage" src="./Source/OiiaCat/OiiaCat.png" alt="Static Cat" class="cat-image" />
+        <button id="oiiaSpinButton" class="cat-button">Spin</button>
+      </div>
     </div>
     
   </div>
@@ -34,6 +38,7 @@
   <audio id="cryingCatSound" src="./Source/CryingCat/Crying.mp3"></audio>
   <audio id="theRockSound" src="./Source/TheRockCat/TheRockSound.mp3"></audio>
   <audio id="tomChingChengSound" src="./Source/TomChingCheng/ChingChengHanji.mp3"></audio>
+  <audio id="oiiaCatSound" src="./Source/OiiaCat/OiiaCat.mp3"></audio>
 
   <script src="script.js"></script>
   <script>
@@ -43,21 +48,24 @@
         "./Source/HappyCat/HappyCatStop.gif",
         "./Source/TheRockCat/TheRockCatPic.png",
         "./Source/CryingCat/CryingCatRun.gif",
-        "./Source/TomChingCheng/TomChingChengPic.png"
+        "./Source/TomChingCheng/TomChingChengPic.png",
+        "./Source/OiiaCat/OiiaCat.png"
       ];
       
       var sounds = [
         "./Source/HappyCat/HappyHappyHappy.mp3",
         "./Source/CryingCat/Crying.mp3",
         "./Source/TheRockCat/TheRockSound.mp3",
-        "./Source/TomChingCheng/ChingChengHanji.mp3"
+        "./Source/TomChingCheng/ChingChengHanji.mp3",
+        "./Source/OiiaCat/OiiaCat.mp3"
       ];
 
       var gif = [
         "./Source/HappyCat/HappyCat.gif",
         "./Source/TheRockCat/TheRockCat.gif",
         "./Source/CryingCat/CryingCat.gif",
-        "./Source/TomChingCheng/TomChingCheng.gif"
+        "./Source/TomChingCheng/TomChingCheng.gif",
+        "./Source/OiiaCat/OiiaCatSpin.gif"
       ];
       
       var preloadImages = images.map(function(src) {

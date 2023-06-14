@@ -160,3 +160,45 @@ chingChengSound.addEventListener("ended", function() {
 
 // ...existing code...
 
+var oiiaCatImage = document.getElementById("oiiaCatImage");
+var oiiaButton = document.getElementById("oiiaSpinButton");
+var oiiaCatSound = document.getElementById("oiiaCatSound");
+var isOiiaSpinning = false;
+var isOiiaSoundPlaying = false;
+var oiiaSoundPosition = 0;
+
+oiiaButton.addEventListener("click", function() {
+  if (isOiiaSpinning) {
+    oiiaCatImage.src = "./Source/OiiaCat/OiiaCat.png";
+    if (isOiiaSoundPlaying) {
+      oiiaCatSound.pause();
+      oiiaSoundPosition = oiiaCatSound.currentTime;
+      isOiiaSoundPlaying = false;
+    }
+    oiiaButton.textContent = "Spin";
+    isOiiaSpinning = false;
+  } else {
+    oiiaCatImage.src = "./Source/OiiaCat/OiiaCatSpin.gif";
+    if (!isCryingSoundPlaying) {
+      oiiaCatSound.currentTime = oiiaSoundPosition;
+      oiiaCatSound.play();
+      isOiiaSoundPlaying = true;
+    }
+    cryButton.textContent = "Stop";
+    isOiiaSpinning = true;
+  }
+});
+
+oiiaCatSound.addEventListener("pause", function() {
+  isOiiaSoundPlaying = false;
+});
+
+oiiaCatSound.addEventListener("play", function() {
+  isOiiaSoundPlaying = true;
+});
+
+oiiaCatSound.addEventListener("ended", function() {
+  // Replay the sound from the beginning
+  oiiaCatSound.currentTime = 0;
+  oiiaCatSound.play();
+});
