@@ -52,13 +52,26 @@
         "./Source/TheRockCat/TheRockSound.mp3",
         "./Source/TomChingCheng/ChingChengHanji.mp3"
       ];
+
+      var gif = [
+        "./Source/HappyCat/HappyCat.gif",
+        "./Source/TheRockCat/TheRockCat.gif",
+        "./Source/CryingCat/CryingCat.gif",
+        "./Source/TomChingCheng/TomChingCheng.gif"
+      ];
       
       var preloadImages = images.map(function(src) {
         var img = new Image();
         img.src = src;
         return img;
       });
-      
+ 
+      var preloadGifs = images.map(function(src) {
+        var gif = new Image();
+        gif.src = src;
+        return gif;
+      });
+
       var preloadSounds = sounds.map(function(src) {
         var audio = new Audio();
         audio.src = src;
