@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cats Meme</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" type="image/x-icon" href="./Source/Favicon/AppleCat.png">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="cat-container">
+        <img id="catImage" src="./Source/HappyCat/HappyCatStop.gif" alt="Static Cat" class="cat-image" />
+        <button id="happyButton" class="cat-button">Happy</button>
+      </div>
+      <div class="cat-container">
+        <img id="theRockCatImage" src="./Source/TheRockCat/TheRockCatPic.png" alt="Static Cat" class="cat-image" />
+        <button id="susButton" class="cat-button">SUS!</button>
+      </div>
+      <div class="cat-container">
+        <img id="cryingCatImage" src="./Source/CryingCat/CryingCatRun.gif" alt="Static Cat" class="cat-image" />
+        <button id="cryButton" class="cat-button">Cry</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="cat-container">
+        <img id="tomChingChengCatImage" src="./Source/TomChingCheng/TomChingChengPic.png" alt="Static Cat" class="cat-image" />
+        <button id="spinButton" class="cat-button">Happy</button>
+      </div>
+    </div>
+    
+  </div>
+
+  <audio id="catSound" src="./Source/HappyCat/HappyHappyHappy.mp3"></audio>
+  <audio id="cryingCatSound" src="./Source/CryingCat/Crying.mp3"></audio>
+  <audio id="theRockSound" src="./Source/TheRockCat/TheRockSound.mp3"></audio>
+  <audio id="tomChingChengSound" src="./Source/TomChingCheng/ChingChengHanji.mp3"></audio>
+
+  <script src="script.js"></script>
+  <script>
+    // Preload GIFs, images, and sounds
+    function preload() {
+      var images = [
+        "./Source/HappyCat/HappyCatStop.gif",
+        "./Source/TheRockCat/TheRockCatPic.png",
+        "./Source/CryingCat/CryingCatRun.gif",
+        "./Source/TomChingCheng/TomChingChengPic.png"
+      ];
+      
+      var sounds = [
+        "./Source/HappyCat/HappyHappyHappy.mp3",
+        "./Source/CryingCat/Crying.mp3",
+        "./Source/TheRockCat/TheRockSound.mp3",
+        "./Source/TomChingCheng/ChingChengHanji.mp3"
+      ];
+      
+      var preloadImages = images.map(function(src) {
+        var img = new Image();
+        img.src = src;
+        return img;
+      });
+      
+      var preloadSounds = sounds.map(function(src) {
+        var audio = new Audio();
+        audio.src = src;
+        return audio;
+      });
+    }
+
+    preload();
+  </script>
+</body>
+</html>

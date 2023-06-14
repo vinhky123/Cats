@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 50px;
+  padding: 0 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.cat-image {
+  width: 360px;
+  height: 240px;
+  object-fit: contain;
+}
+
+.cat-container {
+  flex-basis: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cat-button {
+  width: 100px;
+  padding: 5px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cat-button:hover {
+  background-color: #45a049;
+}
+
+.cat-button:active {
+  background-color: #3e8e41;
+}
