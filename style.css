@@ -50,13 +50,13 @@ body {
 }
 
 /* Adjustments for phones */
-@media (max-width: 600px) {
-  .cat-image {
-    width: 250px;
-    height: 166.67px;
+@media only screen and (max-width: 600px) {
+  .row {
+    flex-wrap: wrap;
   }
-  
+
   .cat-container {
     flex-basis: 50%;
   }
 }
+
