@@ -158,6 +158,38 @@ chingChengSound.addEventListener("ended", function() {
   chingChengSound.play();
 });
 
+
+// ...existing code...
+
+var popCatImage = document.getElementById("popCatImage");
+var popButton = document.getElementById("popButton");
+var popCatSound = document.getElementById("popCatSound");
+var isPopPlaying = false;
+var popSoundPosition = 0;
+
+popButton.addEventListener("click", function() {
+  if (!isPopPlaying) {
+    popCatSound.currentTime = popSoundPosition;
+    popCatSound.play();
+    isPopPlaying = true;
+    popCatImage.src = "./Source/PopCat/PopCat.gif";
+    setTimeout(function() {
+      popCatImage.src = "./Source/PopCat/PopCatPic.gif";
+      popButton.textContent = "Pop";
+      isPopPlaying = false;
+    }, 300);
+  }
+});
+
+popSound.addEventListener("ended", function() {
+  // Reset the state
+  popSound.pause();
+  popSound.currentTime = 0;
+  isPopPlaying = false;
+});
+
+// ...existing code...
+
 // ...existing code...
 
 var oiiaCatImage = document.getElementById("oiiaCatImage");
