@@ -12,10 +12,14 @@
         <img id="catImage" src="./Source/HappyCat/HappyCatStop.gif" alt="Static Cat" class="cat-image" />
         <button id="happyButton" class="cat-button">Happy</button>
       </div>
+      
       <div class="cat-container">
-        <img id="theRockCatImage" src="./Source/TheRockCat/TheRockCatPic.png" alt="Static Cat" class="cat-image" />
-        <button id="susButton" class="cat-button">SUS!</button>
-      </div>
+        <img id="cheemsImage" src="./Source/Cheems/2Cheems.png" alt="Static Cat" class="cat-image" />
+        <div class="button-container">
+          <button id="bonkButton" class="cat-button">1 Bonk</button>
+          <button id="continuousBonkButton" class="cat-button">Ultra Bonk</button>
+        </div>
+      </div>     
       <div class="cat-container">
         <img id="cryingCatImage" src="./Source/CryingCat/CryingCatRun.gif" alt="Static Cat" class="cat-image" />
         <button id="cryButton" class="cat-button">Cry</button>
@@ -31,6 +35,12 @@
         <button id="popButton" class="cat-button">Pop</button>
       </div>      
       <div class="cat-container">
+        <img id="theRockCatImage" src="./Source/TheRockCat/TheRockCatPic.png" alt="Static Cat" class="cat-image" />
+        <button id="susButton" class="cat-button">SUS!</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="cat-container">
         <img id="oiiaCatImage" src="./Source/OiiaCat/OiiaCat.png" alt="Static Cat" class="cat-image" />
         <button id="oiiaSpinButton" class="cat-button">Spin</button>
       </div>
@@ -44,12 +54,48 @@
   <audio id="tomChingChengSound" src="./Source/TomChingCheng/ChingChengHanji.mp3"></audio>
   <audio id="oiiaCatSound" src="./Source/OiiaCat/OiiaCat.mp3"></audio>
   <audio id="popCatSound" src="./Source/PopCat/PopCatSound.mp3"></audio>
+  <audio id="bonkSound" src="./Source/Cheems/Bonk.mp3"></audio>
 
 
   <script src="script.js"></script>
   <script>
-    // Preload GIFs, images, and sounds
-    function preload() {
+    function preload(assets, sounds, callback) {
+      var loadedCount = 0;
+      var totalAssets = assets.length + sounds.length;
+  
+      function assetLoaded() {
+        loadedCount++;
+        if (loadedCount === totalAssets) {
+          callback();
+        }
+      }
+  
+      function loadAssets() {
+        assets.forEach(function(src) {
+          var img = new Image();
+          img.onload = assetLoaded;
+          img.src = src;
+        });
+      }
+  
+      function loadSounds() {
+        sounds.forEach(function(src) {
+          var audio = new Audio();
+          audio.oncanplaythrough = assetLoaded;
+          audio.src = src;
+        });
+      }
+  
+      loadAssets();
+      loadSounds();
+    }
+  
+    function initialize() {
+      // Code to initialize the application
+      // You can start using the preloaded assets here
+    }
+  
+    document.addEventListener("DOMContentLoaded", function() {
       var assets = [
         "./Source/HappyCat/HappyCatStop.gif",
         "./Source/TheRockCat/TheRockCatPic.png",
@@ -62,34 +108,24 @@
         "./Source/CryingCat/CryingCat.gif",
         "./Source/TomChingCheng/TomChingCheng.gif",
         "./Source/OiiaCat/OiiaCatSpin.gif",
-        "./Source/PopCat/PopCat.gif"
+        "./Source/PopCat/PopCat.gif",
+        "./Source/Cheems/2Cheems.png",
+        "./Source/Cheems/Bonk!.png"
       ];
-
+  
       var sounds = [
         "./Source/HappyCat/HappyHappyHappy.mp3",
         "./Source/CryingCat/Crying.mp3",
         "./Source/TheRockCat/TheRockSound.mp3",
         "./Source/TomChingCheng/ChingChengHanji.mp3",
         "./Source/OiiaCat/OiiaCat.mp3",
-        "./Source/PopCat/PopCatSound.mp3"
+        "./Source/PopCat/PopCatSound.mp3",
+        "./Source/Cheems/Bonk.mp3"
       ];
-
-      var preloadAssets = assets.map(function(src) {
-        if (src.endsWith(".gif") || src.endsWith(".png")) {
-          var img = new Image();
-          img.src = src;
-          return img;
-        } else {
-          var audio = new Audio();
-          audio.src = src;
-          return audio;
-        }
-      });
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-      preload();
+  
+      preload(assets, sounds, initialize);
     });
   </script>
+  
 </body>
 </html>

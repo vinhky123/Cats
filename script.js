@@ -236,5 +236,51 @@ oiiaCatSound.addEventListener("ended", function() {
   oiiaCatSound.currentTime = 0;
   oiiaCatSound.play();
 });
+//-----
+var cheemsImage = document.getElementById("cheemsImage");
+var bonkButton = document.getElementById("bonkButton");
+var continuousBonkButton = document.getElementById("continuousBonkButton");
+var bonkSound = document.getElementById("bonkSound");
+var isContinuousBonking = false;
+var bonkInterval;
+
+bonkSound.volume = 1.0; // Set volume to maximum (adjust as needed)
+bonkButton.addEventListener("click", function() {
+  cheemsImage.src = "./Source/Cheems/Bonk!.png";
+  bonkSound.play();
+
+  setTimeout(function() {
+    cheemsImage.src = "./Source/Cheems/2Cheems.png";
+  }, bonkSound.duration * 1000);
+});
+
+continuousBonkButton.addEventListener("click", function() {
+  if (!isContinuousBonking) {
+    isContinuousBonking = true;
+    continuousBonkButton.textContent = "Stop";
+
+    // Execute the bonk code immediately
+    function bonk() {
+      cheemsImage.src = "./Source/Cheems/Bonk!.png";
+      bonkSound.currentTime = 0; // Reset the sound to the beginning
+      bonkSound.play();
+
+      setTimeout(function() {
+        cheemsImage.src = "./Source/Cheems/2Cheems.png";
+      }, bonkSound.duration * 1000);
+    }
+
+    bonk(); // Execute the bonk code immediately
+
+    // Start the interval after the first bonk
+    bonkInterval = setInterval(bonk, bonkSound.duration * 2000);
+  } else {
+    isContinuousBonking = false;
+    continuousBonkButton.textContent = "Ultra Bonk";
+    clearInterval(bonkInterval);
+  }
+});
+
+
 
 // ...existing code...

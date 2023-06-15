@@ -1,5 +1,7 @@
 body {
   background-color: lavender;
+  padding: 0;
+  margin: 0;
 }
 
 .container {
@@ -49,14 +51,5 @@ body {
   background-color: #3e8e41;
 }
 
-/* Adjustments for phones */
-@media only screen and (max-width: 600px) {
-  .row {
-    flex-wrap: wrap;
-  }
 
-  .cat-container {
-    flex-basis: 50%;
-  }
-}
 
