@@ -159,34 +159,44 @@ chingChengSound.addEventListener("ended", function() {
 });
 
 //-----------------------------------------------------------
-
-
 var popCatImage = document.getElementById("popCatImage");
 var popButton = document.getElementById("popButton");
+var continuousPopButton = document.getElementById("continuousPopButton");
 var popCatSound = document.getElementById("popCatSound");
-var isPopPlaying = false;
-var popSoundPosition = 0;
+var isContinuousPopping = false;
+var popInterval;
+
+popCatSound.volume = 1.0;
+
+function pop() {
+  popCatImage.src = "./Source/PopCat/PopCat.gif";
+  popCatSound.currentTime = 0;
+  popCatSound.play();
+
+  setTimeout(function() {
+    popCatImage.src = "./Source/PopCat/PopCatPic.gif";
+  }, popCatSound.duration * 600);
+}
 
 popButton.addEventListener("click", function() {
-  if (!isPopPlaying) {
-    popCatSound.currentTime = popSoundPosition;
-    popCatSound.play();
-    isPopPlaying = true;
-    popCatImage.src = "./Source/PopCat/PopCat.gif";
-    setTimeout(function() {
-      popCatImage.src = "./Source/PopCat/PopCatPic.gif";
-      popButton.textContent = "Pop";
-      isPopPlaying = false;
-    }, 300);
+  pop();
+});
+
+continuousPopButton.addEventListener("click", function() {
+  if (!isContinuousPopping) {
+    isContinuousPopping = true;
+    continuousPopButton.textContent = "Stop";
+
+    pop();
+    popInterval = setInterval(pop, popCatSound.duration * 1500);
+  } else {
+    isContinuousPopping = false;
+    continuousPopButton.textContent = "Ultra Pop";
+    clearInterval(popInterval);
   }
 });
 
-popCatSound.addEventListener("ended", function() {
-  // Reset the state
-  popCatSound.pause();
-  popCatSound.currentTime = 0;
-  isPopPlaying = false;
-});
+
 
 //-----------------------------------------------------------
 
