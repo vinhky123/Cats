@@ -32,7 +32,8 @@
       </div>
       <div class="cat-container">
         <img id="popCatImage" src="./Source/PopCat/PopCatPic.gif" alt="Static Cat" class="cat-image" />
-        <button id="popButton" class="cat-button">Pop</button>
+        <button id="bonkButton" class="cat-button">1 Bonk</button>
+        <button id="continuousBonkButton" class="cat-button">Ultra Bonk</button>
       </div>      
       <div class="cat-container">
         <img id="theRockCatImage" src="./Source/TheRockCat/TheRockCatPic.png" alt="Static Cat" class="cat-image" />
@@ -43,6 +44,10 @@
       <div class="cat-container">
         <img id="oiiaCatImage" src="./Source/OiiaCat/OiiaCat.png" alt="Static Cat" class="cat-image" />
         <button id="oiiaSpinButton" class="cat-button">Spin</button>
+      </div>
+      <div class="cat-container">
+        <img id="maxwellCatImage" src="./Source/MaxwellCat/MaxwellCatPic.gif" alt="Static Cat" class="cat-image" />
+        <button id="maxwellSwingButton" class="cat-button">Swing</button>
       </div>
     </div>
     
@@ -55,6 +60,8 @@
   <audio id="oiiaCatSound" src="./Source/OiiaCat/OiiaCat.mp3"></audio>
   <audio id="popCatSound" src="./Source/PopCat/PopCatSound.mp3"></audio>
   <audio id="bonkSound" src="./Source/Cheems/Bonk.mp3"></audio>
+  <audio id="maxwellSound" src="./Source/MaxwellCat/MaxwellSound.mp3"></audio>
+
 
 
   <script src="script.js"></script>
@@ -110,7 +117,9 @@
         "./Source/OiiaCat/OiiaCatSpin.gif",
         "./Source/PopCat/PopCat.gif",
         "./Source/Cheems/2Cheems.png",
-        "./Source/Cheems/Bonk!.png"
+        "./Source/Cheems/Bonk!.png",
+        "./Source/MaxwellCat/MaxwellCatPic.gif",
+        "./Source/MaxwellCat/MaxwellCat.gif",
       ];
   
       var sounds = [
@@ -121,6 +130,7 @@
         "./Source/OiiaCat/OiiaCat.mp3",
         "./Source/PopCat/PopCatSound.mp3",
         "./Source/Cheems/Bonk.mp3"
+        "./Source/MaxwellCat/MaxwellSound.mp3"
       ];
   
       preload(assets, sounds, initialize);

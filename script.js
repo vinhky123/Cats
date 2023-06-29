@@ -36,10 +36,11 @@ catSound.addEventListener("play", function() {
 });
 
 catSound.addEventListener("ended", function() {
-  // Replay the sound from the beginning
   catSound.currentTime = 0;
   catSound.play();
 });
+
+//-----------------------------------------------------------
 
 var theRockCatImage = document.getElementById("theRockCatImage");
 var susButton = document.getElementById("susButton");
@@ -62,12 +63,12 @@ susButton.addEventListener("click", function() {
 });
 
 theRockSound.addEventListener("ended", function() {
-  // Reset the state
   theRockSound.pause();
   theRockSound.currentTime = 0;
   isSUSPlaying = false;
 });
 
+//-----------------------------------------------------------
 
 var cryingCatImage = document.getElementById("cryingCatImage");
 var cryButton = document.getElementById("cryButton");
@@ -107,13 +108,13 @@ cryingCatSound.addEventListener("play", function() {
 });
 
 cryingCatSound.addEventListener("ended", function() {
-  // Replay the sound from the beginning
   cryingCatSound.currentTime = 0;
   cryingCatSound.play();
 });
 
 
-// ...existing code...
+//-----------------------------------------------------------
+
 
 var tomChingChengCatImage = document.getElementById("tomChingChengCatImage");
 var spinButton = document.getElementById("spinButton");
@@ -153,13 +154,12 @@ chingChengSound.addEventListener("play", function() {
 });
 
 chingChengSound.addEventListener("ended", function() {
-  // Replay the sound from the beginning
   chingChengSound.currentTime = 0;
   chingChengSound.play();
 });
 
+//-----------------------------------------------------------
 
-// ...existing code...
 
 var popCatImage = document.getElementById("popCatImage");
 var popButton = document.getElementById("popButton");
@@ -188,11 +188,7 @@ popCatSound.addEventListener("ended", function() {
   isPopPlaying = false;
 });
 
-// ...existing code...
-
-// ...existing code...
-
-// ...existing code...
+//-----------------------------------------------------------
 
 var oiiaCatImage = document.getElementById("oiiaCatImage");
 var oiiaButton = document.getElementById("oiiaSpinButton");
@@ -232,11 +228,12 @@ oiiaCatSound.addEventListener("play", function() {
 });
 
 oiiaCatSound.addEventListener("ended", function() {
-  // Replay the sound from the beginning
   oiiaCatSound.currentTime = 0;
   oiiaCatSound.play();
 });
-//-----
+
+//-----------------------------------------------------------
+
 var cheemsImage = document.getElementById("cheemsImage");
 var bonkButton = document.getElementById("bonkButton");
 var continuousBonkButton = document.getElementById("continuousBonkButton");
@@ -244,7 +241,7 @@ var bonkSound = document.getElementById("bonkSound");
 var isContinuousBonking = false;
 var bonkInterval;
 
-bonkSound.volume = 1.0; // Set volume to maximum (adjust as needed)
+bonkSound.volume = 1.0; //
 bonkButton.addEventListener("click", function() {
   cheemsImage.src = "./Source/Cheems/Bonk!.png";
   bonkSound.play();
@@ -259,10 +256,9 @@ continuousBonkButton.addEventListener("click", function() {
     isContinuousBonking = true;
     continuousBonkButton.textContent = "Stop";
 
-    // Execute the bonk code immediately
     function bonk() {
       cheemsImage.src = "./Source/Cheems/Bonk!.png";
-      bonkSound.currentTime = 0; // Reset the sound to the beginning
+      bonkSound.currentTime = 0; 
       bonkSound.play();
 
       setTimeout(function() {
@@ -270,9 +266,7 @@ continuousBonkButton.addEventListener("click", function() {
       }, bonkSound.duration * 1000);
     }
 
-    bonk(); // Execute the bonk code immediately
-
-    // Start the interval after the first bonk
+    bonk(); 
     bonkInterval = setInterval(bonk, bonkSound.duration * 2000);
   } else {
     isContinuousBonking = false;
@@ -281,6 +275,48 @@ continuousBonkButton.addEventListener("click", function() {
   }
 });
 
+//-----------------------------------------------------------
+
+var maxwellCatImage = document.getElementById("maxwellCatImage");
+var maxwellSwingButton = document.getElementById("maxwellSwingButton");
+var maxwellCatSound = document.getElementById("maxwellSound");
+var isSwinging = false;
+var isMaxwellSoundPlaying = false;
+var maxwellSoundPosition = 0;
+
+maxwellSwingButton.addEventListener("click", function() {
+  if (isSwinging) {
+    maxwellCatImage.src = "./Source/MaxwellCat/MaxwellCatPic.gif";
+    if (isMaxwellSoundPlaying) {
+      maxwellCatSound.pause();
+      maxwellSoundPosition = maxwellCatSound.currentTime;
+      isMaxwellSoundPlaying = false;
+    }
+    maxwellSwingButton.textContent = "Swing";
+    isSwinging = false;
+  } else {
+    maxwellCatImage.src = "./Source/MaxwellCat/MaxwellCat.gif";
+    if (!isMaxwellSoundPlaying) {
+      maxwellCatSound.currentTime = maxwellSoundPosition;
+      maxwellCatSound.play();
+      isMaxwellSoundPlaying = true;
+    }
+    maxwellSwingButton.textContent = "Stop";
+    isSwinging = true;
+  }
+});
+
+maxwellCatSound.addEventListener("pause", function() {
+  isMaxwellSoundPlaying = false;
+});
+
+maxwellCatSound.addEventListener("play", function() {
+  isMaxwellSoundPlaying = true;
+});
+
+maxwellCatSound.addEventListener("ended", function() {
+  maxwellCatSound.currentTime = 0;
+  maxwellCatSound.play();
+});
 
 
-// ...existing code...
