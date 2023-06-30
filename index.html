@@ -27,8 +27,8 @@
     </div>
     <div class="row">
       <div class="cat-container">
-        <img id="tomChingChengCatImage" src="./Source/TomChingCheng/TomChingChengPic.png" alt="Static Cat" class="cat-image" />
-        <button id="spinButton" class="cat-button">Spin</button>
+        <img id="vibingCatImage" src="./Source/VibingCat/VibingCatPic.gif" alt="Static Cat" class="cat-image" />
+        <button id="vibingButton" class="cat-button">Vibe</button>
       </div>
       <div class="cat-container">
         <img id="popCatImage" src="./Source/PopCat/PopCatPic.gif" alt="Static Cat" class="cat-image" />
@@ -51,6 +51,11 @@
         <img id="maxwellCatImage" src="./Source/MaxwellCat/MaxwellCatPic.gif" alt="Static Cat" class="cat-image" />
         <button id="maxwellSwingButton" class="cat-button">Swing</button>
       </div>
+      
+      <div class="cat-container">
+        <img id="tomChingChengCatImage" src="./Source/TomChingCheng/TomChingChengPic.png" alt="Static Cat" class="cat-image" />
+        <button id="spinButton" class="cat-button">Spin</button>
+      </div>
     </div>
     
   </div>
@@ -63,6 +68,7 @@
   <audio id="popCatSound" src="./Source/PopCat/PopCatSound.mp3"></audio>
   <audio id="bonkSound" src="./Source/Cheems/Bonk.mp3"></audio>
   <audio id="maxwellSound" src="./Source/MaxwellCat/MaxwellSound.mp3"></audio>
+  <audio id="vibingCatSound" src="./Source/VibingCat/VibingCatSound.mp3"></audio>
 
 
 
@@ -100,8 +106,7 @@
     }
   
     function initialize() {
-      // Code to initialize the application
-      // You can start using the preloaded assets here
+      
     }
   
     document.addEventListener("DOMContentLoaded", function() {
@@ -122,6 +127,8 @@
         "./Source/Cheems/Bonk!.png",
         "./Source/MaxwellCat/MaxwellCatPic.gif",
         "./Source/MaxwellCat/MaxwellCat.gif",
+        "./Source/VibingCat/VibingCat.gif",
+        "./Source/VibingCat/VibingCatPic.gif",
       ];
   
       var sounds = [
@@ -132,7 +139,8 @@
         "./Source/OiiaCat/OiiaCat.mp3",
         "./Source/PopCat/PopCatSound.mp3",
         "./Source/Cheems/Bonk.mp3",
-        "./Source/MaxwellCat/MaxwellSound.mp3"
+        "./Source/MaxwellCat/MaxwellSound.mp3",
+        "./Source/VibingCat/VibingCatSound.mp3"
       ];
   
       preload(assets, sounds, initialize);

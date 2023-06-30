@@ -330,3 +330,44 @@ maxwellCatSound.addEventListener("ended", function() {
 });
 
 
+var vibingCatImage = document.getElementById("vibingCatImage");
+var vibingButton = document.getElementById("vibingButton");
+var vibingCatSound = document.getElementById("vibingCatSound");
+var isVibing = false;
+var isVibingSoundPlaying = false;
+var vibingSoundPosition = 0;
+
+vibingButton.addEventListener("click", function() {
+  if (isVibing) {
+    vibingCatImage.src = "./Source/VibingCat/VibingCatPic.gif";
+    if (isVibingSoundPlaying) {
+      vibingCatSound.pause();
+      vibingSoundPosition = vibingCatSound.currentTime;
+      isVibingSoundPlaying = false;
+    }
+    vibingButton.textContent = "Vibe";
+    isVibing = false;
+  } else {
+    vibingCatImage.src = "./Source/VibingCat/VibingCat.gif";
+    if (!isVibingSoundPlaying) {
+      vibingCatSound.currentTime = vibingSoundPosition;
+      vibingCatSound.play();
+      isVibingSoundPlaying = true;
+    }
+    vibingButton.textContent = "Stop";
+    isVibing = true;
+  }
+});
+
+vibingCatSound.addEventListener("pause", function() {
+  isVibingSoundPlaying = false;
+});
+
+vibingCatSound.addEventListener("play", function() {
+  isVibingSoundPlaying = true;
+});
+
+vibingCatSound.addEventListener("ended", function() {
+  vibingCatSound.currentTime = 0;
+  vibingCatSound.play();
+});
