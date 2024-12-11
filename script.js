@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-	const loader = document.getElementById("loader");
-	const mainContent = document.getElementById("main-content");
-
+	// Preload assets
 	const assets = [
 		"./Source/HappyCat/HappyCatStop.gif",
 		"./Source/TheRockCat/TheRockCatPic.png",
@@ -48,35 +46,30 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		}
 
-		// Load Images
 		assets.forEach(function (src) {
 			const img = new Image();
 			img.onload = assetLoaded;
 			img.src = src;
 		});
 
-		// Load Sounds
 		sounds.forEach(function (src) {
 			const audio = new Audio();
-			// Use oncanplaythrough to ensure it's ready to play
-			audio.oncanplaythrough = function () {
-				audio.oncanplaythrough = null;
-				assetLoaded();
-			};
+			audio.oncanplaythrough = assetLoaded;
 			audio.src = src;
 		});
 	}
 
 	function initialize() {
-		// Hide loader and show main content
-		loader.style.display = "none";
-		mainContent.style.display = "block";
-
-		// Now setup interactions
-		setupInteractions();
-	}
-
-	function setupInteractions() {
+		// Configuration for each cat scenario
+		// Each entry defines:
+		// buttonId: The ID of the button
+		// imageId: The ID of the cat image element
+		// activeSrc: The GIF image when active
+		// inactiveSrc: The static image when inactive
+		// soundId: The ID of the associated audio
+		// loopSound: whether the sound loops indefinitely
+		// toggleButtonText: [activeText, inactiveText] for toggling button
+		// specialActions: (optional) handles special intervals (like continuous actions)
 		const catConfigs = [
 			{
 				buttonId: "happyButton",
@@ -113,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				soundId: "theRockSound",
 				loopSound: false,
 				toggleButtonText: ["SUS!", "SUS!"],
-				autoRevertDelay: 1500,
+				autoRevertDelay: 1500, // revert after a short animation
 			},
 			{
 				buttonId: "oiiaSpinButton",
@@ -144,12 +137,14 @@ document.addEventListener("DOMContentLoaded", function () {
 			},
 		];
 
-		// Set up all regular cats
-		catConfigs.forEach(setupCat);
-
-		// Pop Cat and Cheems
+		// Special cats with continuous actions
+		// popCat and cheems have a single action button and a continuous action button
+		// We'll handle them separately for clarity.
 		setupPopCat();
 		setupCheems();
+
+		// Set up all regular cats
+		catConfigs.forEach(setupCat);
 
 		function setupCat(config) {
 			const button = document.getElementById(config.buttonId);
@@ -193,6 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					}
 					isActive = true;
 
+					// If there's a set auto-revert (like The Rock Cat), revert after delay
 					if (config.autoRevertDelay) {
 						setTimeout(() => {
 							image.src = config.inactiveSrc;
@@ -201,6 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
 								soundPosition = audio.currentTime;
 								isSoundPlaying = false;
 							}
+							// The Rock Cat doesn't really toggle states, it just plays once
 							if (config.toggleButtonText) {
 								button.textContent = config.toggleButtonText[1];
 							}
@@ -220,6 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		}
 
+		// Pop Cat setup (single pop and continuous)
 		function setupPopCat() {
 			const popCatImage = document.getElementById("popCatImage");
 			const popButton = document.getElementById("popButton");
@@ -258,6 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 		}
 
+		// Cheems setup (single Bonk and continuous)
 		function setupCheems() {
 			const cheemsImage = document.getElementById("cheemsImage");
 			const bonkButton = document.getElementById("bonkButton");
