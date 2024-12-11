@@ -1,373 +1,297 @@
-var catImage = document.getElementById("catImage");
-var happyButton = document.getElementById("happyButton");
-var catSound = document.getElementById("catSound");
-var isHappy = false;
-var isSoundPlaying = false;
-var soundPosition = 0;
+document.addEventListener("DOMContentLoaded", function () {
+	// Preload assets
+	const assets = [
+		"./Source/HappyCat/HappyCatStop.gif",
+		"./Source/TheRockCat/TheRockCatPic.png",
+		"./Source/CryingCat/CryingCatRun.gif",
+		"./Source/TomChingCheng/TomChingChengPic.png",
+		"./Source/OiiaCat/OiiaCat.png",
+		"./Source/PopCat/PopCatPic.gif",
+		"./Source/HappyCat/HappyCat.gif",
+		"./Source/TheRockCat/TheRockCat.gif",
+		"./Source/CryingCat/CryingCat.gif",
+		"./Source/TomChingCheng/TomChingCheng.gif",
+		"./Source/OiiaCat/OiiaCatSpin.gif",
+		"./Source/PopCat/PopCat.gif",
+		"./Source/Cheems/2Cheems.png",
+		"./Source/Cheems/Bonk!.png",
+		"./Source/MaxwellCat/MaxwellCatPic.gif",
+		"./Source/MaxwellCat/MaxwellCat.gif",
+		"./Source/VibingCat/VibingCat.gif",
+		"./Source/VibingCat/VibingCatPic.gif",
+	];
 
-happyButton.addEventListener("click", function() {
-  if (isHappy) {
-    catImage.src = "./Source/HappyCat/HappyCatStop.gif";
-    if (isSoundPlaying) {
-      catSound.pause();
-      soundPosition = catSound.currentTime;
-      isSoundPlaying = false;
-    }
-    happyButton.textContent = "Happy";
-    isHappy = false;
-  } else {
-    catImage.src = "./Source/HappyCat/HappyCat.gif";
-    if (!isSoundPlaying) {
-      catSound.currentTime = soundPosition;
-      catSound.play();
-      isSoundPlaying = true;
-    }
-    happyButton.textContent = "Stop";
-    isHappy = true;
-  }
-});
+	const sounds = [
+		"./Source/HappyCat/HappyHappyHappy.mp3",
+		"./Source/CryingCat/Crying.mp3",
+		"./Source/TheRockCat/TheRockSound.mp3",
+		"./Source/TomChingCheng/ChingChengHanji.mp3",
+		"./Source/OiiaCat/OiiaCat.mp3",
+		"./Source/PopCat/PopCatSound.mp3",
+		"./Source/Cheems/Bonk.mp3",
+		"./Source/MaxwellCat/MaxwellSound.mp3",
+		"./Source/VibingCat/VibingCatSound.mp3",
+	];
 
-catSound.addEventListener("pause", function() {
-  isSoundPlaying = false;
-});
+	preload(assets, sounds, initialize);
 
-catSound.addEventListener("play", function() {
-  isSoundPlaying = true;
-});
+	function preload(assets, sounds, callback) {
+		let loadedCount = 0;
+		const totalAssets = assets.length + sounds.length;
 
-catSound.addEventListener("ended", function() {
-  catSound.currentTime = 0;
-  catSound.play();
-});
+		function assetLoaded() {
+			loadedCount++;
+			if (loadedCount === totalAssets) {
+				callback();
+			}
+		}
 
-//-----------------------------------------------------------
+		assets.forEach(function (src) {
+			const img = new Image();
+			img.onload = assetLoaded;
+			img.src = src;
+		});
 
-var theRockCatImage = document.getElementById("theRockCatImage");
-var susButton = document.getElementById("susButton");
-var theRockSound = document.getElementById("theRockSound");
-var isSUSPlaying = false;
-var susSoundPosition = 0;
+		sounds.forEach(function (src) {
+			const audio = new Audio();
+			audio.oncanplaythrough = assetLoaded;
+			audio.src = src;
+		});
+	}
 
-susButton.addEventListener("click", function() {
-  if (!isSUSPlaying) {
-    theRockSound.currentTime = susSoundPosition;
-    theRockSound.play();
-    isSUSPlaying = true;
-    theRockCatImage.src = "./Source/TheRockCat/TheRockCat.gif";
-    setTimeout(function() {
-      theRockCatImage.src = "./Source/TheRockCat/TheRockCatPic.png";
-      susButton.textContent = "SUS!";
-      isSUSPlaying = false;
-    }, 1500);
-  }
-});
+	function initialize() {
+		// Configuration for each cat scenario
+		// Each entry defines:
+		// buttonId: The ID of the button
+		// imageId: The ID of the cat image element
+		// activeSrc: The GIF image when active
+		// inactiveSrc: The static image when inactive
+		// soundId: The ID of the associated audio
+		// loopSound: whether the sound loops indefinitely
+		// toggleButtonText: [activeText, inactiveText] for toggling button
+		// specialActions: (optional) handles special intervals (like continuous actions)
+		const catConfigs = [
+			{
+				buttonId: "happyButton",
+				imageId: "catImage",
+				activeSrc: "./Source/HappyCat/HappyCat.gif",
+				inactiveSrc: "./Source/HappyCat/HappyCatStop.gif",
+				soundId: "catSound",
+				loopSound: true,
+				toggleButtonText: ["Stop", "Happy"],
+			},
+			{
+				buttonId: "cryButton",
+				imageId: "cryingCatImage",
+				activeSrc: "./Source/CryingCat/CryingCat.gif",
+				inactiveSrc: "./Source/CryingCat/CryingCatRun.gif",
+				soundId: "cryingCatSound",
+				loopSound: true,
+				toggleButtonText: ["Stop", "Cry"],
+			},
+			{
+				buttonId: "spinButton",
+				imageId: "tomChingChengCatImage",
+				activeSrc: "./Source/TomChingCheng/TomChingCheng.gif",
+				inactiveSrc: "./Source/TomChingCheng/TomChingChengPic.png",
+				soundId: "tomChingChengSound",
+				loopSound: true,
+				toggleButtonText: ["Stop", "Spin"],
+			},
+			{
+				buttonId: "susButton",
+				imageId: "theRockCatImage",
+				activeSrc: "./Source/TheRockCat/TheRockCat.gif",
+				inactiveSrc: "./Source/TheRockCat/TheRockCatPic.png",
+				soundId: "theRockSound",
+				loopSound: false,
+				toggleButtonText: ["SUS!", "SUS!"],
+				autoRevertDelay: 1500, // revert after a short animation
+			},
+			{
+				buttonId: "oiiaSpinButton",
+				imageId: "oiiaCatImage",
+				activeSrc: "./Source/OiiaCat/OiiaCatSpin.gif",
+				inactiveSrc: "./Source/OiiaCat/OiiaCat.png",
+				soundId: "oiiaCatSound",
+				loopSound: true,
+				toggleButtonText: ["Stop", "Spin"],
+			},
+			{
+				buttonId: "maxwellSwingButton",
+				imageId: "maxwellCatImage",
+				activeSrc: "./Source/MaxwellCat/MaxwellCat.gif",
+				inactiveSrc: "./Source/MaxwellCat/MaxwellCatPic.gif",
+				soundId: "maxwellSound",
+				loopSound: true,
+				toggleButtonText: ["Stop", "Swing"],
+			},
+			{
+				buttonId: "vibingButton",
+				imageId: "vibingCatImage",
+				activeSrc: "./Source/VibingCat/VibingCat.gif",
+				inactiveSrc: "./Source/VibingCat/VibingCatPic.gif",
+				soundId: "vibingCatSound",
+				loopSound: true,
+				toggleButtonText: ["Stop", "Vibe"],
+			},
+		];
 
-theRockSound.addEventListener("ended", function() {
-  theRockSound.pause();
-  theRockSound.currentTime = 0;
-  isSUSPlaying = false;
-});
+		// Special cats with continuous actions
+		// popCat and cheems have a single action button and a continuous action button
+		// We'll handle them separately for clarity.
+		setupPopCat();
+		setupCheems();
 
-//-----------------------------------------------------------
+		// Set up all regular cats
+		catConfigs.forEach(setupCat);
 
-var cryingCatImage = document.getElementById("cryingCatImage");
-var cryButton = document.getElementById("cryButton");
-var cryingCatSound = document.getElementById("cryingCatSound");
-var isCrying = false;
-var isCryingSoundPlaying = false;
-var cryingSoundPosition = 0;
+		function setupCat(config) {
+			const button = document.getElementById(config.buttonId);
+			const image = document.getElementById(config.imageId);
+			const audio = document.getElementById(config.soundId);
 
-cryButton.addEventListener("click", function() {
-  if (isCrying) {
-    cryingCatImage.src = "./Source/CryingCat/CryingCatRun.gif";
-    if (isCryingSoundPlaying) {
-      cryingCatSound.pause();
-      cryingSoundPosition = cryingCatSound.currentTime;
-      isCryingSoundPlaying = false;
-    }
-    cryButton.textContent = "Cry";
-    isCrying = false;
-  } else {
-    cryingCatImage.src = "./Source/CryingCat/CryingCat.gif";
-    if (!isCryingSoundPlaying) {
-      cryingCatSound.currentTime = cryingSoundPosition;
-      cryingCatSound.play();
-      isCryingSoundPlaying = true;
-    }
-    cryButton.textContent = "Stop";
-    isCrying = true;
-  }
-});
+			let isActive = false;
+			let soundPosition = 0;
+			let isSoundPlaying = false;
 
-cryingCatSound.addEventListener("pause", function() {
-  isCryingSoundPlaying = false;
-});
+			if (audio && config.loopSound) {
+				audio.addEventListener("ended", () => {
+					audio.currentTime = 0;
+					audio.play();
+				});
+			}
 
-cryingCatSound.addEventListener("play", function() {
-  isCryingSoundPlaying = true;
-});
+			button.addEventListener("click", function () {
+				if (isActive) {
+					// Deactivate
+					image.src = config.inactiveSrc;
+					if (audio && isSoundPlaying) {
+						audio.pause();
+						soundPosition = audio.currentTime;
+						isSoundPlaying = false;
+					}
+					if (config.toggleButtonText) {
+						button.textContent = config.toggleButtonText[1];
+					}
+					isActive = false;
+				} else {
+					// Activate
+					image.src = config.activeSrc;
+					if (audio && !isSoundPlaying) {
+						audio.currentTime = soundPosition;
+						audio.play();
+						isSoundPlaying = true;
+					}
+					if (config.toggleButtonText) {
+						button.textContent = config.toggleButtonText[0];
+					}
+					isActive = true;
 
-cryingCatSound.addEventListener("ended", function() {
-  cryingCatSound.currentTime = 0;
-  cryingCatSound.play();
-});
+					// If there's a set auto-revert (like The Rock Cat), revert after delay
+					if (config.autoRevertDelay) {
+						setTimeout(() => {
+							image.src = config.inactiveSrc;
+							if (audio && isSoundPlaying) {
+								audio.pause();
+								soundPosition = audio.currentTime;
+								isSoundPlaying = false;
+							}
+							// The Rock Cat doesn't really toggle states, it just plays once
+							if (config.toggleButtonText) {
+								button.textContent = config.toggleButtonText[1];
+							}
+							isActive = false;
+						}, config.autoRevertDelay);
+					}
+				}
+			});
 
+			if (audio) {
+				audio.addEventListener("pause", () => {
+					isSoundPlaying = false;
+				});
+				audio.addEventListener("play", () => {
+					isSoundPlaying = true;
+				});
+			}
+		}
 
-//-----------------------------------------------------------
+		// Pop Cat setup (single pop and continuous)
+		function setupPopCat() {
+			const popCatImage = document.getElementById("popCatImage");
+			const popButton = document.getElementById("popButton");
+			const continuousPopButton = document.getElementById(
+				"continuousPopButton"
+			);
+			const popCatSound = document.getElementById("popCatSound");
+			let isContinuousPopping = false;
+			let popInterval;
 
+			popCatSound.volume = 1.0;
 
-var tomChingChengCatImage = document.getElementById("tomChingChengCatImage");
-var spinButton = document.getElementById("spinButton");
-var chingChengSound = document.getElementById("tomChingChengSound");
-var isSpinning = false;
-var isChingChengSoundPlaying = false;
-var chingChengSoundPosition = 0;
+			function pop() {
+				popCatImage.src = "./Source/PopCat/PopCat.gif";
+				popCatSound.currentTime = 0;
+				popCatSound.play();
 
-spinButton.addEventListener("click", function() {
-  if (isSpinning) {
-    tomChingChengCatImage.src = "./Source/TomChingCheng/TomChingChengPic.png";
-    if (isChingChengSoundPlaying) {
-      chingChengSound.pause();
-      chingChengSoundPosition = chingChengSound.currentTime;
-      isChingChengSoundPlaying = false;
-    }
-    spinButton.textContent = "Spin";
-    isSpinning = false;
-  } else {
-    tomChingChengCatImage.src = "./Source/TomChingCheng/TomChingCheng.gif";
-    if (!isChingChengSoundPlaying) {
-      chingChengSound.currentTime = chingChengSoundPosition;
-      chingChengSound.play();
-      isChingChengSoundPlaying = true;
-    }
-    spinButton.textContent = "Stop";
-    isSpinning = true;
-  }
-});
+				setTimeout(function () {
+					popCatImage.src = "./Source/PopCat/PopCatPic.gif";
+				}, popCatSound.duration * 600);
+			}
 
-chingChengSound.addEventListener("pause", function() {
-  isChingChengSoundPlaying = false;
-});
+			popButton.addEventListener("click", pop);
 
-chingChengSound.addEventListener("play", function() {
-  isChingChengSoundPlaying = true;
-});
+			continuousPopButton.addEventListener("click", function () {
+				if (!isContinuousPopping) {
+					isContinuousPopping = true;
+					continuousPopButton.textContent = "Stop";
+					pop();
+					popInterval = setInterval(pop, popCatSound.duration * 1500);
+				} else {
+					isContinuousPopping = false;
+					continuousPopButton.textContent = "Ultra Pop";
+					clearInterval(popInterval);
+				}
+			});
+		}
 
-chingChengSound.addEventListener("ended", function() {
-  chingChengSound.currentTime = 0;
-  chingChengSound.play();
-});
+		// Cheems setup (single Bonk and continuous)
+		function setupCheems() {
+			const cheemsImage = document.getElementById("cheemsImage");
+			const bonkButton = document.getElementById("bonkButton");
+			const continuousBonkButton = document.getElementById(
+				"continuousBonkButton"
+			);
+			const bonkSound = document.getElementById("bonkSound");
+			let isContinuousBonking = false;
+			let bonkInterval;
 
-//-----------------------------------------------------------
-var popCatImage = document.getElementById("popCatImage");
-var popButton = document.getElementById("popButton");
-var continuousPopButton = document.getElementById("continuousPopButton");
-var popCatSound = document.getElementById("popCatSound");
-var isContinuousPopping = false;
-var popInterval;
+			bonkSound.volume = 1.0;
 
-popCatSound.volume = 1.0;
+			function singleBonk() {
+				cheemsImage.src = "./Source/Cheems/Bonk!.png";
+				bonkSound.currentTime = 0;
+				bonkSound.play();
+				setTimeout(function () {
+					cheemsImage.src = "./Source/Cheems/2Cheems.png";
+				}, bonkSound.duration * 1000);
+			}
 
-function pop() {
-  popCatImage.src = "./Source/PopCat/PopCat.gif";
-  popCatSound.currentTime = 0;
-  popCatSound.play();
+			bonkButton.addEventListener("click", singleBonk);
 
-  setTimeout(function() {
-    popCatImage.src = "./Source/PopCat/PopCatPic.gif";
-  }, popCatSound.duration * 600);
-}
-
-popButton.addEventListener("click", function() {
-  pop();
-});
-
-continuousPopButton.addEventListener("click", function() {
-  if (!isContinuousPopping) {
-    isContinuousPopping = true;
-    continuousPopButton.textContent = "Stop";
-
-    pop();
-    popInterval = setInterval(pop, popCatSound.duration * 1500);
-  } else {
-    isContinuousPopping = false;
-    continuousPopButton.textContent = "Ultra Pop";
-    clearInterval(popInterval);
-  }
-});
-
-
-
-//-----------------------------------------------------------
-
-var oiiaCatImage = document.getElementById("oiiaCatImage");
-var oiiaButton = document.getElementById("oiiaSpinButton");
-var oiiaCatSound = document.getElementById("oiiaCatSound");
-var isOiiaSpinning = false;
-var isOiiaSoundPlaying = false;
-var oiiaSoundPosition = 0;
-
-oiiaButton.addEventListener("click", function() {
-  if (isOiiaSpinning) {
-    oiiaCatImage.src = "./Source/OiiaCat/OiiaCat.png";
-    if (isOiiaSoundPlaying) {
-      oiiaCatSound.pause();
-      oiiaSoundPosition = oiiaCatSound.currentTime;
-      isOiiaSoundPlaying = false;
-    }
-    oiiaButton.textContent = "Spin";
-    isOiiaSpinning = false;
-  } else {
-    oiiaCatImage.src = "./Source/OiiaCat/OiiaCatSpin.gif";
-    if (!isOiiaSoundPlaying) {
-      oiiaCatSound.currentTime = oiiaSoundPosition;
-      oiiaCatSound.play();
-      isOiiaSoundPlaying = true;
-    }
-    oiiaButton.textContent = "Stop";
-    isOiiaSpinning = true;
-  }
-});
-
-oiiaCatSound.addEventListener("pause", function() {
-  isOiiaSoundPlaying = false;
-});
-
-oiiaCatSound.addEventListener("play", function() {
-  isOiiaSoundPlaying = true;
-});
-
-oiiaCatSound.addEventListener("ended", function() {
-  oiiaCatSound.currentTime = 0;
-  oiiaCatSound.play();
-});
-
-//-----------------------------------------------------------
-
-var cheemsImage = document.getElementById("cheemsImage");
-var bonkButton = document.getElementById("bonkButton");
-var continuousBonkButton = document.getElementById("continuousBonkButton");
-var bonkSound = document.getElementById("bonkSound");
-var isContinuousBonking = false;
-var bonkInterval;
-
-bonkSound.volume = 1.0; //
-bonkButton.addEventListener("click", function() {
-  cheemsImage.src = "./Source/Cheems/Bonk!.png";
-  bonkSound.play();
-
-  setTimeout(function() {
-    cheemsImage.src = "./Source/Cheems/2Cheems.png";
-  }, bonkSound.duration * 1000);
-});
-
-continuousBonkButton.addEventListener("click", function() {
-  if (!isContinuousBonking) {
-    isContinuousBonking = true;
-    continuousBonkButton.textContent = "Stop";
-
-    function bonk() {
-      cheemsImage.src = "./Source/Cheems/Bonk!.png";
-      bonkSound.currentTime = 0; 
-      bonkSound.play();
-
-      setTimeout(function() {
-        cheemsImage.src = "./Source/Cheems/2Cheems.png";
-      }, bonkSound.duration * 1000);
-    }
-
-    bonk(); 
-    bonkInterval = setInterval(bonk, bonkSound.duration * 2000);
-  } else {
-    isContinuousBonking = false;
-    continuousBonkButton.textContent = "Ultra Bonk";
-    clearInterval(bonkInterval);
-  }
-});
-
-//-----------------------------------------------------------
-
-var maxwellCatImage = document.getElementById("maxwellCatImage");
-var maxwellSwingButton = document.getElementById("maxwellSwingButton");
-var maxwellCatSound = document.getElementById("maxwellSound");
-var isSwinging = false;
-var isMaxwellSoundPlaying = false;
-var maxwellSoundPosition = 0;
-
-maxwellSwingButton.addEventListener("click", function() {
-  if (isSwinging) {
-    maxwellCatImage.src = "./Source/MaxwellCat/MaxwellCatPic.gif";
-    if (isMaxwellSoundPlaying) {
-      maxwellCatSound.pause();
-      maxwellSoundPosition = maxwellCatSound.currentTime;
-      isMaxwellSoundPlaying = false;
-    }
-    maxwellSwingButton.textContent = "Swing";
-    isSwinging = false;
-  } else {
-    maxwellCatImage.src = "./Source/MaxwellCat/MaxwellCat.gif";
-    if (!isMaxwellSoundPlaying) {
-      maxwellCatSound.currentTime = maxwellSoundPosition;
-      maxwellCatSound.play();
-      isMaxwellSoundPlaying = true;
-    }
-    maxwellSwingButton.textContent = "Stop";
-    isSwinging = true;
-  }
-});
-
-maxwellCatSound.addEventListener("pause", function() {
-  isMaxwellSoundPlaying = false;
-});
-
-maxwellCatSound.addEventListener("play", function() {
-  isMaxwellSoundPlaying = true;
-});
-
-maxwellCatSound.addEventListener("ended", function() {
-  maxwellCatSound.currentTime = 0;
-  maxwellCatSound.play();
-});
-
-
-var vibingCatImage = document.getElementById("vibingCatImage");
-var vibingButton = document.getElementById("vibingButton");
-var vibingCatSound = document.getElementById("vibingCatSound");
-var isVibing = false;
-var isVibingSoundPlaying = false;
-var vibingSoundPosition = 0;
-
-vibingButton.addEventListener("click", function() {
-  if (isVibing) {
-    vibingCatImage.src = "./Source/VibingCat/VibingCatPic.gif";
-    if (isVibingSoundPlaying) {
-      vibingCatSound.pause();
-      vibingSoundPosition = vibingCatSound.currentTime;
-      isVibingSoundPlaying = false;
-    }
-    vibingButton.textContent = "Vibe";
-    isVibing = false;
-  } else {
-    vibingCatImage.src = "./Source/VibingCat/VibingCat.gif";
-    if (!isVibingSoundPlaying) {
-      vibingCatSound.currentTime = vibingSoundPosition;
-      vibingCatSound.play();
-      isVibingSoundPlaying = true;
-    }
-    vibingButton.textContent = "Stop";
-    isVibing = true;
-  }
-});
-
-vibingCatSound.addEventListener("pause", function() {
-  isVibingSoundPlaying = false;
-});
-
-vibingCatSound.addEventListener("play", function() {
-  isVibingSoundPlaying = true;
-});
-
-vibingCatSound.addEventListener("ended", function() {
-  vibingCatSound.currentTime = 0;
-  vibingCatSound.play();
+			continuousBonkButton.addEventListener("click", function () {
+				if (!isContinuousBonking) {
+					isContinuousBonking = true;
+					continuousBonkButton.textContent = "Stop";
+					singleBonk();
+					bonkInterval = setInterval(singleBonk, bonkSound.duration * 2000);
+				} else {
+					isContinuousBonking = false;
+					continuousBonkButton.textContent = "Ultra Bonk";
+					clearInterval(bonkInterval);
+				}
+			});
+		}
+	}
 });

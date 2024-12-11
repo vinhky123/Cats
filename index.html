@@ -1,151 +1,147 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Cats Meme</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="icon" type="image/x-icon" href="./Source/Favicon/AppleCat.png">
-</head>
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="cat-container">
-        <img id="catImage" src="./Source/HappyCat/HappyCatStop.gif" alt="Static Cat" class="cat-image" />
-        <button id="happyButton" class="cat-button">Happy</button>
-      </div>
-      
-      <div class="cat-container">
-        <img id="cheemsImage" src="./Source/Cheems/2Cheems.png" alt="Static Cat" class="cat-image" />
-        <div class="button-container">
-          <button id="bonkButton" class="cat-button">1 Bonk</button>
-          <button id="continuousBonkButton" class="cat-button">Ultra Bonk</button>
-        </div>
-      </div>     
-      <div class="cat-container">
-        <img id="cryingCatImage" src="./Source/CryingCat/CryingCatRun.gif" alt="Static Cat" class="cat-image" />
-        <button id="cryButton" class="cat-button">Cry</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="cat-container">
-        <img id="vibingCatImage" src="./Source/VibingCat/VibingCatPic.gif" alt="Static Cat" class="cat-image" />
-        <button id="vibingButton" class="cat-button">Vibe</button>
-      </div>
-      <div class="cat-container">
-        <img id="popCatImage" src="./Source/PopCat/PopCatPic.gif" alt="Static Cat" class="cat-image" />
-        <div class="button-container">
-          <button id="popButton" class="cat-button">Pop</button>
-          <button id="continuousPopButton" class="cat-button">Ultra Pop</button>
-        </div>
-      </div>      
-      <div class="cat-container">
-        <img id="theRockCatImage" src="./Source/TheRockCat/TheRockCatPic.png" alt="Static Cat" class="cat-image" />
-        <button id="susButton" class="cat-button">SUS!</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="cat-container">
-        <img id="oiiaCatImage" src="./Source/OiiaCat/OiiaCat.png" alt="Static Cat" class="cat-image" />
-        <button id="oiiaSpinButton" class="cat-button">Spin</button>
-      </div>
-      <div class="cat-container">
-        <img id="maxwellCatImage" src="./Source/MaxwellCat/MaxwellCatPic.gif" alt="Static Cat" class="cat-image" />
-        <button id="maxwellSwingButton" class="cat-button">Swing</button>
-      </div>
-      
-      <div class="cat-container">
-        <img id="tomChingChengCatImage" src="./Source/TomChingCheng/TomChingChengPic.png" alt="Static Cat" class="cat-image" />
-        <button id="spinButton" class="cat-button">Spin</button>
-      </div>
-    </div>
-    
-  </div>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Cats Meme</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="icon" type="image/x-icon" href="./Source/Favicon/AppleCat.png" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<!-- Happy Cat -->
+				<div class="cat-container">
+					<img
+						id="catImage"
+						src="./Source/HappyCat/HappyCatStop.gif"
+						alt="Static Cat"
+						class="cat-image"
+					/>
+					<button id="happyButton" class="cat-button">Happy</button>
+				</div>
 
-  <audio id="catSound" src="./Source/HappyCat/HappyHappyHappy.mp3"></audio>
-  <audio id="cryingCatSound" src="./Source/CryingCat/Crying.mp3"></audio>
-  <audio id="theRockSound" src="./Source/TheRockCat/TheRockSound.mp3"></audio>
-  <audio id="tomChingChengSound" src="./Source/TomChingCheng/ChingChengHanji.mp3"></audio>
-  <audio id="oiiaCatSound" src="./Source/OiiaCat/OiiaCat.mp3"></audio>
-  <audio id="popCatSound" src="./Source/PopCat/PopCatSound.mp3"></audio>
-  <audio id="bonkSound" src="./Source/Cheems/Bonk.mp3"></audio>
-  <audio id="maxwellSound" src="./Source/MaxwellCat/MaxwellSound.mp3"></audio>
-  <audio id="vibingCatSound" src="./Source/VibingCat/VibingCatSound.mp3"></audio>
+				<!-- Cheems -->
+				<div class="cat-container">
+					<img
+						id="cheemsImage"
+						src="./Source/Cheems/2Cheems.png"
+						alt="Static Cat"
+						class="cat-image"
+					/>
+					<div class="button-container">
+						<button id="bonkButton" class="cat-button">1 Bonk</button>
+						<button id="continuousBonkButton" class="cat-button">
+							Ultra Bonk
+						</button>
+					</div>
+				</div>
 
+				<!-- Crying Cat -->
+				<div class="cat-container">
+					<img
+						id="cryingCatImage"
+						src="./Source/CryingCat/CryingCatRun.gif"
+						alt="Static Cat"
+						class="cat-image"
+					/>
+					<button id="cryButton" class="cat-button">Cry</button>
+				</div>
+			</div>
 
+			<div class="row">
+				<!-- Vibing Cat -->
+				<div class="cat-container">
+					<img
+						id="vibingCatImage"
+						src="./Source/VibingCat/VibingCatPic.gif"
+						alt="Static Cat"
+						class="cat-image"
+					/>
+					<button id="vibingButton" class="cat-button">Vibe</button>
+				</div>
 
-  <script src="script.js"></script>
-  <script>
-    function preload(assets, sounds, callback) {
-      var loadedCount = 0;
-      var totalAssets = assets.length + sounds.length;
-  
-      function assetLoaded() {
-        loadedCount++;
-        if (loadedCount === totalAssets) {
-          callback();
-        }
-      }
-  
-      function loadAssets() {
-        assets.forEach(function(src) {
-          var img = new Image();
-          img.onload = assetLoaded;
-          img.src = src;
-        });
-      }
-  
-      function loadSounds() {
-        sounds.forEach(function(src) {
-          var audio = new Audio();
-          audio.oncanplaythrough = assetLoaded;
-          audio.src = src;
-        });
-      }
-  
-      loadAssets();
-      loadSounds();
-    }
-  
-    function initialize() {
-      
-    }
-  
-    document.addEventListener("DOMContentLoaded", function() {
-      var assets = [
-        "./Source/HappyCat/HappyCatStop.gif",
-        "./Source/TheRockCat/TheRockCatPic.png",
-        "./Source/CryingCat/CryingCatRun.gif",
-        "./Source/TomChingCheng/TomChingChengPic.png",
-        "./Source/OiiaCat/OiiaCat.png",
-        "./Source/PopCat/PopCatPic.gif",
-        "./Source/HappyCat/HappyCat.gif",
-        "./Source/TheRockCat/TheRockCat.gif",
-        "./Source/CryingCat/CryingCat.gif",
-        "./Source/TomChingCheng/TomChingCheng.gif",
-        "./Source/OiiaCat/OiiaCatSpin.gif",
-        "./Source/PopCat/PopCat.gif",
-        "./Source/Cheems/2Cheems.png",
-        "./Source/Cheems/Bonk!.png",
-        "./Source/MaxwellCat/MaxwellCatPic.gif",
-        "./Source/MaxwellCat/MaxwellCat.gif",
-        "./Source/VibingCat/VibingCat.gif",
-        "./Source/VibingCat/VibingCatPic.gif",
-      ];
-  
-      var sounds = [
-        "./Source/HappyCat/HappyHappyHappy.mp3",
-        "./Source/CryingCat/Crying.mp3",
-        "./Source/TheRockCat/TheRockSound.mp3",
-        "./Source/TomChingCheng/ChingChengHanji.mp3",
-        "./Source/OiiaCat/OiiaCat.mp3",
-        "./Source/PopCat/PopCatSound.mp3",
-        "./Source/Cheems/Bonk.mp3",
-        "./Source/MaxwellCat/MaxwellSound.mp3",
-        "./Source/VibingCat/VibingCatSound.mp3"
-      ];
-  
-      preload(assets, sounds, initialize);
-    });
-  </script>
-  
-</body>
+				<!-- Pop Cat -->
+				<div class="cat-container">
+					<img
+						id="popCatImage"
+						src="./Source/PopCat/PopCatPic.gif"
+						alt="Static Cat"
+						class="cat-image"
+					/>
+					<div class="button-container">
+						<button id="popButton" class="cat-button">Pop</button>
+						<button id="continuousPopButton" class="cat-button">
+							Ultra Pop
+						</button>
+					</div>
+				</div>
+
+				<!-- The Rock Cat -->
+				<div class="cat-container">
+					<img
+						id="theRockCatImage"
+						src="./Source/TheRockCat/TheRockCatPic.png"
+						alt="Static Cat"
+						class="cat-image"
+					/>
+					<button id="susButton" class="cat-button">SUS!</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<!-- Oiia Cat -->
+				<div class="cat-container">
+					<img
+						id="oiiaCatImage"
+						src="./Source/OiiaCat/OiiaCat.png"
+						alt="Static Cat"
+						class="cat-image"
+					/>
+					<button id="oiiaSpinButton" class="cat-button">Spin</button>
+				</div>
+
+				<!-- Maxwell Cat -->
+				<div class="cat-container">
+					<img
+						id="maxwellCatImage"
+						src="./Source/MaxwellCat/MaxwellCatPic.gif"
+						alt="Static Cat"
+						class="cat-image"
+					/>
+					<button id="maxwellSwingButton" class="cat-button">Swing</button>
+				</div>
+
+				<!-- Tom ChingCheng -->
+				<div class="cat-container">
+					<img
+						id="tomChingChengCatImage"
+						src="./Source/TomChingCheng/TomChingChengPic.png"
+						alt="Static Cat"
+						class="cat-image"
+					/>
+					<button id="spinButton" class="cat-button">Spin</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Audio Elements -->
+		<audio id="catSound" src="./Source/HappyCat/HappyHappyHappy.mp3"></audio>
+		<audio id="cryingCatSound" src="./Source/CryingCat/Crying.mp3"></audio>
+		<audio id="theRockSound" src="./Source/TheRockCat/TheRockSound.mp3"></audio>
+		<audio
+			id="tomChingChengSound"
+			src="./Source/TomChingCheng/ChingChengHanji.mp3"
+		></audio>
+		<audio id="oiiaCatSound" src="./Source/OiiaCat/OiiaCat.mp3"></audio>
+		<audio id="popCatSound" src="./Source/PopCat/PopCatSound.mp3"></audio>
+		<audio id="bonkSound" src="./Source/Cheems/Bonk.mp3"></audio>
+		<audio id="maxwellSound" src="./Source/MaxwellCat/MaxwellSound.mp3"></audio>
+		<audio
+			id="vibingCatSound"
+			src="./Source/VibingCat/VibingCatSound.mp3"
+		></audio>
+
+		<script src="script.js"></script>
+	</body>
 </html>

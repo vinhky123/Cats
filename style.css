@@ -51,11 +51,7 @@ body {
   background-color: #3e8e41;
 }
 
-#vibingCatImage{
+#vibingCatImage,
+#popCatImage {
   padding: 10px;
 }
-
-#popCatImage{
-  padding: 10px;
-}
-
