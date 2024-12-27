@@ -1,57 +1,48 @@
 body {
-  background-color: lavender;
-  padding: 0;
-  margin: 0;
+	background-color: lavender;
+	padding: 0;
+	margin: 0;
 }
-
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 50px;
-  padding: 0 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-top: 50px;
+	padding: 0 20px;
 }
-
 .row {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-bottom: 10px;
 }
-
 .cat-image {
-  width: 360px;
-  height: 240px;
-  object-fit: contain;
+	width: 360px;
+	height: 240px;
+	object-fit: contain;
 }
-
 .cat-container {
-  flex-basis: 33%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	flex-basis: 33%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
-
 .cat-button {
-  width: 100px;
-  padding: 5px;
-  font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+	width: 100px;
+	padding: 5px;
+	font-size: 16px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
-
 .cat-button:hover {
-  background-color: #45a049;
+	background-color: #45a049;
 }
-
 .cat-button:active {
-  background-color: #3e8e41;
+	background-color: #3e8e41;
 }
-
-#vibingCatImage,
-#popCatImage {
-  padding: 10px;
+#vibingCatImage,#popCatImage {
+	padding: 10px;
 }
